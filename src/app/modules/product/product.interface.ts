@@ -17,3 +17,7 @@ export type TProduct = {
   variants: TVariants[];
   inventory: TInventory;
 };
+
+export interface ProductQuery {
+  tags?: { $in: string[] };
+}

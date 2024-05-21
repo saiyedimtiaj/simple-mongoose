@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { productServices } from "./product.services";
+import { ProductQuery } from "./product.interface";
 
 const createProduct = async (req: Request, res: Response) => {
   try {
     const product = req.body;
-    console.log(product);
     const result = await productServices.saveProductToDb(product);
     res.status(200).json({
       sucess: true,
@@ -22,7 +22,11 @@ const createProduct = async (req: Request, res: Response) => {
 
 const getAllProduct = async (req: Request, res: Response) => {
   try {
-    const result = await productServices.getProductFromDb();
+    const query: ProductQuery = {};
+    if (req?.query?.searchTerm) {
+      query.tags = { $in: [req.query.searchTerm as string] };
+    }
+    const result = await productServices.getProductFromDb(query);
     res.status(200).json({
       sucess: true,
       message: "Product fetched successfully!",

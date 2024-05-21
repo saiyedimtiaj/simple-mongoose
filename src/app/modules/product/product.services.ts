@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { TProduct } from "./product.interface";
+import { ProductQuery, TProduct } from "./product.interface";
 import { Product } from "./product.model";
 
 const saveProductToDb = async (product: TProduct) => {
@@ -7,8 +7,8 @@ const saveProductToDb = async (product: TProduct) => {
   return result;
 };
 
-const getProductFromDb = async () => {
-  const result = await Product.find();
+const getProductFromDb = async (query: ProductQuery) => {
+  const result = await Product.find(query);
   return result;
 };
 
