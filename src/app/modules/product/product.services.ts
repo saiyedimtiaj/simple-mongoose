@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { ProductQuery, TProduct } from "./product.interface";
+import { ProductQuery, TProduct, TQueryId } from "./product.interface";
 import { Product } from "./product.model";
 
 const saveProductToDb = async (product: TProduct) => {
@@ -21,9 +21,15 @@ const deleteSingleProductFromDb = async (id: string) => {
   return result;
 };
 
+const updateProductInDb = async (query: TQueryId, body: TProduct) => {
+  const result = await Product.updateOne(query, body);
+  return result;
+};
+
 export const productServices = {
   saveProductToDb,
   getProductFromDb,
   getSingleProductFromDb,
   deleteSingleProductFromDb,
+  updateProductInDb,
 };

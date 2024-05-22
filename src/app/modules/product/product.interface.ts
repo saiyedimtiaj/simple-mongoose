@@ -1,3 +1,5 @@
+import { ObjectId } from "mongodb";
+
 export interface TVariants {
   type: string;
   value: string;
@@ -20,4 +22,8 @@ export type TProduct = {
 
 export interface ProductQuery {
   tags?: { $in: string[] };
+}
+
+export interface TQueryId {
+  _id: ObjectId;
 }
