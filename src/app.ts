@@ -14,4 +14,11 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });
 
+app.get("*", async (req: Request, res: Response) => {
+  res.json({
+    sucess: false,
+    message: "Route not found",
+  });
+});
+
 export default app;

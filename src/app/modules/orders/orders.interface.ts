@@ -4,3 +4,7 @@ export type TOrders = {
   price: number;
   quantity: number;
 };
+
+export interface TOrderQuery {
+  email?: string;
+}
